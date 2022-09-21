@@ -1,0 +1,20 @@
+.content{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 18px;
+  padding-right: 22px;
+  min-height: 58px;
+  cursor: pointer;
+  border-radius: 5px;
+  .header_content{
+    .header_item_name{
+      font-size: 18px;
+      font-style: oblique;
+      &:hover {
+        text-shadow: rgb(143, 143, 143) 3px 1px 15px;
+        text-decoration: underline;
+      }
+    }
+  }
+}

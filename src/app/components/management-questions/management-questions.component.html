@@ -1,0 +1,46 @@
+<div class="content">
+  <button class="create_question" routerLink="/create-question">Create Question</button>
+  <div *ngIf="isQuestionExist" class="question_list">
+    <div class="question" [@questionListAnimation] *ngFor="let question of storedQuestionsList">
+      <span class="question_message">{{question.questionTitle}}</span>
+      <div class="answer_options_content" *ngIf="question.type === 'open'">
+        <textarea name="answer" rows="5" [value]="question.questionText" readonly></textarea>
+      </div>
+      <div class="answer_options_content" *ngIf="question.type === 'single' || question.type === 'multiple'">
+        <div class="first_col">
+          <div class="answer_options">
+            <span class="option">A: </span>
+            <span>{{question.questionOptionA}}</span>
+          </div>
+          <div class="answer_options">
+            <span class="option">B: </span>
+            <span>{{question.questionOptionB}}</span>
+          </div>
+        </div>
+        <div class="second_col">
+          <div class="answer_options">
+            <span class="option">C: </span>
+            <span>{{question.questionOptionC}}</span>
+          </div>
+          <div class="answer_options">
+            <span class="option">D: </span>
+            <span>{{question.questionOptionD}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="about_question">
+        <div class="question_info">
+          <span>Type: {{question.type | titlecase}}</span>
+          <span>Created date: {{question.createAt | date}}</span>
+        </div>
+        <div class="manage_question">
+          <button class="delete_question" (click)="deleteQuestion(question.id)">DELETE</button>
+          <button class="edit_question" (click)="editQuestion(question.id)">EDIT</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isQuestionExist" class="question_list">
+    <h1>Oops, No questions exist yet !</h1>
+  </div>
+</div>

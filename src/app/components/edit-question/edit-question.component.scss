@@ -1,0 +1,185 @@
+.content {
+  position: relative;
+  padding-bottom: 30px;
+    .management_question {
+      margin-left: 50px;
+      top: 0;
+      cursor: pointer;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      background-color: #1c8a25;
+      color: white;
+      &:hover {
+        background-color: #077911;
+      }
+      &:active {
+        opacity: 0.7;
+      }
+    }
+    @media (max-width: 880px) {
+      .management_question {
+        top: 20px;
+      }
+    }
+  .question_options_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 400px;
+    margin-top: 80px;
+    .title {
+      font-weight: bold;
+      font-style: italic;
+      font-size: 16px;
+    }
+    .title_type {
+      font-size: 26px;
+      font-weight: bolder;
+      margin-left: 35%;
+      padding: 20px;
+    }
+    .single_question,
+    .multiple_question {
+      position: relative;
+      width: calc(100% - 800px);
+      min-width: 400px;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 5px 4px 10px 5px #c5c5c5;
+      animation: showQuestion 300ms;
+      @keyframes showQuestion {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      textarea {
+        resize: none;
+        width: 100%;
+        margin-top: 20px;
+        border: 1px solid rgb(173, 173, 173);
+        text-decoration: none;
+        outline: none;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+      .answer_options {
+        display: flex;
+        flex-direction: row;
+        .options_content {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          margin-top: 15px;
+          label {
+            margin-top: 30px;
+            font-style: italic;
+            input {
+              margin-left: 15px;
+              padding-left: 5px;
+              border: none;
+              text-decoration: none;
+              outline: none;
+              border-bottom: 1px solid rgb(197, 197, 197);
+              font-size: 14px;
+              max-width: 170px;
+            }
+          }
+        }
+        .correct_option {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          margin-top: 15px;
+          margin-left: 15px;
+          input {
+            width: 1.3em;
+            height: 1.3em;
+            background-color: white;
+            border-radius: 50%;
+            border: 1px solid #ddd;
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            &:checked{
+              background-color: #077911;
+            }
+          }
+        }
+      }
+    }
+    .single_question {
+      background: linear-gradient(#f0fcc3, #fad8d9);
+    }
+    .multiple_question {
+      background: linear-gradient(#fce2cc, #d1f5fa);
+    }
+    .open_question {
+      position: relative;
+      width: calc(100% - 800px);
+      min-width: 400px;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 5px 4px 10px 5px #c5c5c5;
+      background: linear-gradient(#c8f7d0, #e0e1fc);
+      animation: showQuestion 300ms;
+      @keyframes showQuestion {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      textarea {
+        resize: none;
+        width: 100%;
+        margin-top: 20px;
+        border: 1px solid rgb(173, 173, 173);
+        text-decoration: none;
+        outline: none;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+      .answer_text {
+        resize: none;
+        margin-top: 30px;
+        margin-bottom: 45px;
+        text-decoration: none;
+        outline: none;
+        border-radius: 5px;
+        font-size: 14px;
+      }
+    }
+    .create_question {
+      position: absolute;
+      background-color: #05a812;
+      border: none;
+      border-radius: 5px;
+      bottom: 10px;
+      right: 15px;
+      cursor: pointer;
+      padding: 8px 25px;
+      button {
+        border: none;
+        background: transparent;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      &.disabled {
+        background-color: #088d1357;
+        cursor: no-drop !important;
+        pointer-events: none;
+      }
+      &:active {
+        opacity: 0.7;
+      }
+    }
+  }
+}

@@ -1,0 +1,130 @@
+<div class="content">
+  <div class="question_type">
+    <button class="management_question" routerLink="/management-question">Management Question</button>
+    <label class="container">Single
+      <input type="radio" (click)="setQuestionType('single')" [value]="questionType" checked="checked" name="radio">
+      <span class="checkmark"></span>
+    </label>
+    <label class="container">Multiple
+      <input type="radio" (click)="setQuestionType('multiple')" [value]="questionType" name="radio">
+      <span class="checkmark"></span>
+    </label>
+    <label class="container">Open
+      <input type="radio" (click)="setQuestionType('open')" [value]="questionType" name="radio">
+      <span class="checkmark"></span>
+    </label>
+  </div>
+
+  <div class="question_options_content">
+
+    <form [formGroup]="singleQuestionFormGroup" (ngSubmit)="submitForm()">
+      <div class="single_question" *ngIf="questionType==='single'">
+        <span class="title_type">{{questionType | titlecase}}</span>
+        <div class="question_title">
+          <span class="title">Question title ` </span>
+          <textarea rows="5" formControlName="questionTitle" required></textarea>
+        </div>
+        <div class="answer_options">
+          <div class="options_content">
+            <div class="options_titles">
+              <span class="title">Answer options ` </span>
+              <span class="title">Select correct option` </span>
+            </div>
+            <div class="options_values">
+              <label>{{values.questionOptionA.name}} :
+                <input type="text" id="A" formControlName="questionOptionA" required>
+                <input type="radio" name="singleCorrectOption" value="A" (click)="checked($event.target)">
+              </label>
+              <label>{{values.questionOptionB.name}} :
+                <input type="text" id="B" formControlName="questionOptionB" required>
+                <input type="radio" name="singleCorrectOption" value="B" (click)="checked($event.target)">
+              </label>
+              <label>{{values.questionOptionC.name}} :
+                <input type="text" id="C" formControlName="questionOptionC" required>
+                <input type="radio" name="singleCorrectOption" value="C" (click)="checked($event.target)">
+              </label>
+              <label>{{values.questionOptionD.name}} :
+                <input type="text" id="D" formControlName="questionOptionD" required>
+                <input type="radio" name="singleCorrectOption" value="D" (click)="checked($event.target)">
+              </label>
+            </div>
+          </div>
+          <!-- <div class="correct_option">
+            <span class="title">Select correct option` </span>
+            <input type="radio" name="singleCorrectOption" value="A" (click)="checked($event.target)">
+            <input type="radio" name="singleCorrectOption" value="B" (click)="checked($event.target)">
+            <input type="radio" name="singleCorrectOption" value="C" (click)="checked($event.target)">
+            <input type="radio" name="singleCorrectOption" value="D" (click)="checked($event.target)">
+          </div> -->
+        </div>
+        <div class="create_question" [ngClass]="{'disabled':!singleQuestionFormGroup.valid || !isRadioValid}">
+          <button [disabled]="!singleQuestionFormGroup.valid">CREATE</button>
+        </div>
+      </div>
+    </form>
+
+    <form [formGroup]="multipleQuestionFormGroup" (ngSubmit)="submitForm()">
+      <div class="multiple_question" *ngIf="questionType==='multiple'">
+        <span class="title_type">{{questionType | titlecase}}</span>
+        <div class="question_title">
+          <span class="title">Question title ` </span>
+          <textarea rows="5" formControlName="questionTitle" required></textarea>
+        </div>
+        <div class="answer_options">
+          <div class="options_content">
+            <div class="options_titles">
+              <span class="title">Answer options ` </span>
+              <span class="title">Select correct option` </span>
+            </div>
+            <div class="options_values">
+              <label>{{values.questionOptionA.name}} :
+                <input type="text" id="A" formControlName="questionOptionA" required>
+                <input type="radio" name="singleCorrectOption" value="A" (click)="checked($event.target)">
+              </label>
+              <label>{{values.questionOptionB.name}} :
+                <input type="text" id="B" formControlName="questionOptionB" required>
+                <input type="radio" name="singleCorrectOption" value="B" (click)="checked($event.target)">
+              </label>
+              <label>{{values.questionOptionC.name}} :
+                <input type="text" id="C" formControlName="questionOptionC" required>
+                <input type="radio" name="singleCorrectOption" value="C" (click)="checked($event.target)">
+              </label>
+              <label>{{values.questionOptionD.name}} :
+                <input type="text" id="D" formControlName="questionOptionD" required>
+                <input type="radio" name="singleCorrectOption" value="D" (click)="checked($event.target)">
+              </label>
+            </div>
+          </div>
+          <!-- <div class="correct_option">
+            <span class="title">Select correct option` </span>
+            <input type="radio" value="A" (click)="checked($event.target)">
+            <input type="radio" value="B" (click)="checked($event.target)">
+            <input type="radio" value="C" (click)="checked($event.target)">
+            <input type="radio" value="D" (click)="checked($event.target)">
+          </div> -->
+        </div>
+        <div class="create_question" [ngClass]="{'disabled':!multipleQuestionFormGroup.valid || !isRadioValid}">
+          <button [disabled]="!multipleQuestionFormGroup.valid">CREATE</button>
+        </div>
+      </div>
+    </form>
+
+    <form [formGroup]="openQuestionFormGroup" (ngSubmit)="submitForm()">
+      <div class="open_question" *ngIf="questionType==='open'">
+        <span class="title_type">{{questionType | titlecase}}</span>
+        <div class="question_title">
+          <span class="title">Question title ` </span>
+          <textarea rows="5" class="open" formControlName="questionTitle" required></textarea>
+        </div>
+        <div class="answer_text">
+          <span class="title">Answer text ` </span>
+          <textarea rows="5" class="open" formControlName="questionText" required></textarea>
+        </div>
+        <div class="create_question" [ngClass]="{'disabled':!openQuestionFormGroup.valid}">
+          <button [disabled]="!openQuestionFormGroup.valid">CREATE</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>
