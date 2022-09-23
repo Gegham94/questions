@@ -1,6 +1,21 @@
+.content::-webkit-scrollbar {
+  width: 5px;
+}
+.content::-webkit-scrollbar-track {
+  box-shadow: inset 3px 2px 6px rgba(65, 64, 64, 0.37);
+  border-radius: 8px;
+}
+.content::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  box-shadow: inset 3px 2px 6px rgba(100, 100, 100, 0.3);
+  background-color: #11493e;
+}
 .content {
   position: relative;
   padding-bottom: 30px;
+  padding-top: 20px;
+  height: calc(100vh - 100px);
+  overflow-y: scroll;
     .management_question {
       margin-left: 50px;
       top: 0;
@@ -9,6 +24,7 @@
       border: none;
       border-radius: 5px;
       font-size: 14px;
+      font-weight: bold;
       background-color: #1c8a25;
       color: white;
       &:hover {
@@ -70,43 +86,46 @@
       .answer_options {
         display: flex;
         flex-direction: row;
+        width: 100%;
         .options_content {
           display: flex;
           flex-direction: column;
-          justify-content: space-between;
           margin-top: 15px;
-          label {
-            margin-top: 30px;
-            font-style: italic;
-            input {
-              margin-left: 15px;
-              padding-left: 5px;
-              border: none;
-              text-decoration: none;
-              outline: none;
-              border-bottom: 1px solid rgb(197, 197, 197);
-              font-size: 14px;
-              max-width: 170px;
+          width: 100%;
+          .options_titles {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            span:last-child{
+              margin-right: 15px;
             }
           }
-        }
-        .correct_option {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          margin-top: 15px;
-          margin-left: 15px;
-          input {
-            width: 1.3em;
-            height: 1.3em;
-            background-color: white;
-            border-radius: 50%;
-            border: 1px solid #ddd;
-            appearance: none;
-            -webkit-appearance: none;
-            cursor: pointer;
-            &:checked{
-              background-color: #077911;
+          .options_values {
+            label {
+              display: flex;
+              flex-direction: row;
+              flex-wrap: nowrap;
+              margin-top: 30px;
+              font-style: italic;
+              input {
+                margin-left: 15px;
+                padding-left: 5px;
+                border: none;
+                text-decoration: none;
+                outline: none;
+                border-bottom: 1px solid rgb(197, 197, 197);
+                font-size: 14px;
+                max-width: 170px;
+              }
+            }
+            input[type="checkbox"] {
+              margin-left: 25px !important;
+              width: 1em;
+              height: 1em;
+              background-color: white;
+              border-radius: 50%;
+              border: 1px solid #ddd;
+              cursor: pointer;
             }
           }
         }

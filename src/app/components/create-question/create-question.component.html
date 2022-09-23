@@ -1,6 +1,6 @@
 <div class="content">
   <div class="question_type">
-    <button class="management_question" routerLink="/management-question">Management Question</button>
+    <button class="management_question" routerLink="/management-question">MANAGE QUESTION</button>
     <label class="container">Single
       <input type="radio" (click)="setQuestionType('single')" [value]="questionType" checked="checked" name="radio">
       <span class="checkmark"></span>
@@ -31,33 +31,26 @@
               <span class="title">Select correct option` </span>
             </div>
             <div class="options_values">
-              <label>{{values.questionOptionA.name}} :
-                <input type="text" id="A" formControlName="questionOptionA" required>
-                <input type="radio" name="singleCorrectOption" value="A" (click)="checked($event.target)">
+              <label>A :
+                <input type="text" formControlName="questionOptionA" required>
+                <input type="checkbox"  value="A" (click)="checked($event.target)" #correctOption>
               </label>
-              <label>{{values.questionOptionB.name}} :
-                <input type="text" id="B" formControlName="questionOptionB" required>
-                <input type="radio" name="singleCorrectOption" value="B" (click)="checked($event.target)">
+              <label>B :
+                <input type="text" formControlName="questionOptionB" required>
+                <input type="checkbox" value="B" (click)="checked($event.target)" #correctOption>
               </label>
-              <label>{{values.questionOptionC.name}} :
-                <input type="text" id="C" formControlName="questionOptionC" required>
-                <input type="radio" name="singleCorrectOption" value="C" (click)="checked($event.target)">
+              <label>C :
+                <input type="text" formControlName="questionOptionC" required>
+                <input type="checkbox" value="C" (click)="checked($event.target)" #correctOption>
               </label>
-              <label>{{values.questionOptionD.name}} :
-                <input type="text" id="D" formControlName="questionOptionD" required>
-                <input type="radio" name="singleCorrectOption" value="D" (click)="checked($event.target)">
+              <label>D :
+                <input type="text" formControlName="questionOptionD" required>
+                <input type="checkbox" value="D" (click)="checked($event.target)" #correctOption>
               </label>
             </div>
           </div>
-          <!-- <div class="correct_option">
-            <span class="title">Select correct option` </span>
-            <input type="radio" name="singleCorrectOption" value="A" (click)="checked($event.target)">
-            <input type="radio" name="singleCorrectOption" value="B" (click)="checked($event.target)">
-            <input type="radio" name="singleCorrectOption" value="C" (click)="checked($event.target)">
-            <input type="radio" name="singleCorrectOption" value="D" (click)="checked($event.target)">
-          </div> -->
         </div>
-        <div class="create_question" [ngClass]="{'disabled':!singleQuestionFormGroup.valid || !isRadioValid}">
+        <div class="create_question" [ngClass]="{'disabled':!singleQuestionFormGroup.valid}">
           <button [disabled]="!singleQuestionFormGroup.valid">CREATE</button>
         </div>
       </div>
@@ -77,33 +70,26 @@
               <span class="title">Select correct option` </span>
             </div>
             <div class="options_values">
-              <label>{{values.questionOptionA.name}} :
-                <input type="text" id="A" formControlName="questionOptionA" required>
-                <input type="radio" name="singleCorrectOption" value="A" (click)="checked($event.target)">
+              <label>A :
+                <input type="text" formControlName="questionOptionA" required>
+                <input type="checkbox" value="A" (click)="checked($event.target)" #correctOption>
               </label>
-              <label>{{values.questionOptionB.name}} :
-                <input type="text" id="B" formControlName="questionOptionB" required>
-                <input type="radio" name="singleCorrectOption" value="B" (click)="checked($event.target)">
+              <label>B :
+                <input type="text" formControlName="questionOptionB" required>
+                <input type="checkbox" value="B" (click)="checked($event.target)" #correctOption>
               </label>
-              <label>{{values.questionOptionC.name}} :
-                <input type="text" id="C" formControlName="questionOptionC" required>
-                <input type="radio" name="singleCorrectOption" value="C" (click)="checked($event.target)">
+              <label>C :
+                <input type="text" formControlName="questionOptionC" required>
+                <input type="checkbox" value="C" (click)="checked($event.target)" #correctOption>
               </label>
-              <label>{{values.questionOptionD.name}} :
-                <input type="text" id="D" formControlName="questionOptionD" required>
-                <input type="radio" name="singleCorrectOption" value="D" (click)="checked($event.target)">
+              <label>D :
+                <input type="text" formControlName="questionOptionD" required>
+                <input type="checkbox" value="D" (click)="checked($event.target)" #correctOption>
               </label>
             </div>
           </div>
-          <!-- <div class="correct_option">
-            <span class="title">Select correct option` </span>
-            <input type="radio" value="A" (click)="checked($event.target)">
-            <input type="radio" value="B" (click)="checked($event.target)">
-            <input type="radio" value="C" (click)="checked($event.target)">
-            <input type="radio" value="D" (click)="checked($event.target)">
-          </div> -->
         </div>
-        <div class="create_question" [ngClass]="{'disabled':!multipleQuestionFormGroup.valid || !isRadioValid}">
+        <div class="create_question" [ngClass]="{'disabled':!multipleQuestionFormGroup.valid}">
           <button [disabled]="!multipleQuestionFormGroup.valid">CREATE</button>
         </div>
       </div>

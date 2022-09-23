@@ -1,0 +1,96 @@
+.unanswered::-webkit-scrollbar {
+  width: 5px;
+}
+.unanswered::-webkit-scrollbar-track {
+  box-shadow: inset 3px 2px 6px rgba(65, 64, 64, 0.37);
+  border-radius: 8px;
+}
+.unanswered::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  box-shadow: inset 3px 2px 6px rgba(100, 100, 100, 0.3);
+  background-color: #11493e;
+}
+.answered::-webkit-scrollbar {
+  width: 5px;
+}
+.answered::-webkit-scrollbar-track {
+  box-shadow: inset 3px 2px 6px rgba(65, 64, 64, 0.37);
+  border-radius: 8px;
+}
+.answered::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  box-shadow: inset 3px 2px 6px rgba(100, 100, 100, 0.3);
+  background-color: #11493e;
+}
+
+.content {
+  position: relative;
+  .management_question {
+    position: absolute;
+    left: 40px;
+    top: 20px;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #1c8a25;
+    color: white;
+    &:hover {
+      background-color: #077911;
+    }
+    &:active {
+      opacity: 0.7;
+    }
+  }
+  .question_list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    .unanswered,
+    .answered {
+      margin-top: 60px;
+      padding-top: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-height: calc(100vh - 150px);
+      overflow-y: scroll;
+      .list_title {
+        position: absolute;
+        font-size: 24px;
+        font-weight: bold;
+        top: 20px;
+      }
+      .card {
+        width: calc(100% - 100px);
+        min-height: 150px;
+        box-shadow: 5px 0px 10px 3px #a7a7a7;
+        padding: 10px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        .card_body {
+          .answer_btn {
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            margin-right: 5px;
+            padding: 7px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            &:active {
+              opacity: 0.7;
+            }
+            background-color: #1c8a25;
+            &:hover {
+              background-color: #077911;
+            }
+          }
+        }
+      }
+    }
+  }
+}

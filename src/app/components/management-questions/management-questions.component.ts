@@ -17,7 +17,6 @@ export class ManagementQuestionsComponent implements OnInit {
   constructor(private router: Router) {}
 
   storedQuestionsList: any;
-  questions: any;
   isQuestionExist: boolean = false;
 
   ngOnInit(): void {

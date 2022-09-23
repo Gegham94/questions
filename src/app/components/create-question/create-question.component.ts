@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { v4 as uuidv4 } from 'uuid';
@@ -8,9 +8,9 @@ import { v4 as uuidv4 } from 'uuid';
   templateUrl: './create-question.component.html',
   styleUrls: ['./create-question.component.scss'],
 })
-export class CreateQuestionComponent implements OnInit {
-
-  isRadioValid: boolean = false;
+export class CreateQuestionComponent implements AfterViewInit {
+  
+  @ViewChildren('correctOption') correctOption!: QueryList<any>;
   questionsList: any = [];
   questionType: string = 'single';
   radioValues: any[] = [];
@@ -21,14 +21,14 @@ export class CreateQuestionComponent implements OnInit {
   values = {
     id: '',
     questionTitle: '',
-    questionOptionA: {name: 'A', value: '', isSelected: false},
-    questionOptionB: {name: 'B', value: '', isSelected: false},
-    questionOptionC: {name: 'C', value: '', isSelected: false},
-    questionOptionD: {name: 'D', value: '', isSelected: false},
+    questionOptionA: '',
+    questionOptionB: '',
+    questionOptionC: '',
+    questionOptionD: '',
     createAt: '',
     type: '',
     answered: false,
-    // correctAnswer: [''],
+    correctAnswer: [''],
   };
 
   constructor(private router: Router) {
@@ -52,7 +52,7 @@ export class CreateQuestionComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     const questions = localStorage.getItem('questions');
     if (questions) {
       JSON.parse(questions).forEach((element: any) => {
@@ -73,11 +73,12 @@ export class CreateQuestionComponent implements OnInit {
     if (this.questionType === 'multiple') this.values = this.multipleQuestionFormGroup.getRawValue();
     if (this.questionType === 'open') this.values = this.openQuestionFormGroup.getRawValue();
 
+    this.radioValues.length > 0 ? this.values.answered = true: this.values.answered = false;
+    console.log(this.values)
     this.values.id = uuidv4();
     this.values.createAt = new Date(Date.now()).toString();
     this.values.type = this.questionType;
-    this.values.answered = false;
-    // this.values.correctAnswer = this.radioValues;
+    this.values.correctAnswer = this.radioValues;
     this.questionsList.push(this.values);
     localStorage.setItem('questions', JSON.stringify(this.questionsList));
 
@@ -85,7 +86,32 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   checked(eventTarget: any) {
-    this.radioValues.push(eventTarget.value);
-    this.isRadioValid = true;
+      this.radioValues = [];
+      if (this.questionType === 'single'){
+      this.correctOption.toArray().forEach((elem) => {
+          if (elem.nativeElement.defaultValue === eventTarget.value) {
+            elem.nativeElement.checked ? true: false;
+          } else {
+            elem.nativeElement.checked = false
+          }
+      });
+      this.correctOption.toArray().forEach((item) => {
+        if (item.nativeElement.checked === true ){
+          this.radioValues.push(item.nativeElement.defaultValue);
+        }
+      });
+    }
+    if (this.questionType === 'multiple'){
+      this.correctOption.toArray().forEach((elem) => {
+          if (elem.nativeElement.defaultValue === eventTarget.value) {
+            elem.nativeElement.checked ? true: false;
+          }
+      });
+      this.correctOption.toArray().forEach((item) => {
+        if (item.nativeElement.checked === true ){
+          this.radioValues.push(item.nativeElement.defaultValue);
+        }
+      });
+    }
   }
 }

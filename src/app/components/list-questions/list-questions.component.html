@@ -1,1 +1,25 @@
-<p>list-questions works!</p>
+<div class="content">
+  <button class="management_question" routerLink="/management-question">MANAGE QUESTION</button>
+  <div *ngIf="isQuestionExist" class="question_list">
+    <div class="unanswered">
+      <span class="list_title">UNANSWERED</span>
+      <div class="card" *ngFor="let question of unansweredList">
+        <div class="card_body">
+          <h4 class="card_title">Example text to build on the card title and make up the bulk of the card's content.</h4>
+          <button type="button" class="answer_btn">TO ANSWER</button>
+        </div>
+      </div>
+    </div>
+    <div class="answered">
+      <span class="list_title">ANSWERED</span>
+      <div class="card" *ngFor="let question of answeredList">
+        <div class="card_body">
+          <h4 class="card_title">Example text to build on the card title and make up the bulk of the card's content.</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!isQuestionExist" class="question_list">
+    <h1>Oops, No questions exist yet !</h1>
+  </div>
+</div>

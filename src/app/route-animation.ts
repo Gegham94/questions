@@ -7,7 +7,7 @@ import {
   animate,
 } from '@angular/animations';
 
-export const slider = 
+export const slider =
   trigger('routeAnimations',[
     transition('managementQuestion => createQuestion', slideTo('right')),
     transition('managementQuestion => editQuestion', slideTo('right')),
@@ -42,10 +42,10 @@ export const slider =
       ], {optional: true}),
       group([
         query(':leave',[
-          animate('200ms ease',  style({ [direction]: '100%' })),
+          animate('300ms ease',  style({ [direction]: '100%' })),
         ], {optional: true}),
         query(':enter',[
-          animate('200ms ease',  style({ [direction]: '0%' })),
+          animate('300ms ease',  style({ [direction]: '0%' })),
         ], {optional: true}),
       ])
     ];
