@@ -1,3 +1,15 @@
+textarea::-webkit-scrollbar {
+  width: 2px;
+}
+textarea::-webkit-scrollbar-track {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+textarea::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
 .question_list::-webkit-scrollbar {
   width: 5px;
 }
@@ -61,8 +73,15 @@
       margin-left: 85px;
       box-shadow: 5px 0px 10px 3px #a7a7a7;
       .question_message {
+        border-color: #a7a7a7;
+        width: calc(100% - 100px);
+        resize: none;
+        text-decoration: none;
+        outline: none;
+        border-radius: 5px;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#d4dbb1a9)) fixed;
         font-weight: bolder;
-        font-size: 22px;
+        font-size: 16px;
       }
       .answer_options_content {
         display: flex;
@@ -70,7 +89,7 @@
         align-items: center;
         justify-content: center;
         textarea {
-          margin-top: 25px;
+          margin-top: 20px;
           font-size: 14px;
           text-decoration: none;
           outline: none;
@@ -81,7 +100,7 @@
           padding: 5px;
         }
         .answer_options {
-          margin: 20px 30px;
+          margin: 10px 30px;
           text-align: left;
           .option {
             font-weight: bold;

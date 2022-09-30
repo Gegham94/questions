@@ -3,10 +3,24 @@
   <div *ngIf="isQuestionExist" class="question_list">
     <div class="unanswered">
       <span class="list_title">UNANSWERED</span>
+      <ng-content></ng-content>
       <div class="card" *ngFor="let question of unansweredList">
         <div class="card_body">
-          <h4 class="card_title">Example text to build on the card title and make up the bulk of the card's content.</h4>
-          <button type="button" class="answer_btn">TO ANSWER</button>
+          <div class="card_title">
+            <textarea name="answer" maxlength="500" rows="4" readonly>{{question.questionTitle}}</textarea>
+          </div>
+          <div class="card_options" *ngIf="question.type==='single' || question.type==='multiple'">
+            <div class="options">
+              <label for="">A :<span>{{question.questionOptionA}}</span></label>
+              <label for="">B :<span>{{question.questionOptionB}}</span></label>
+            </div>
+            <div class="options">
+              <label for="">C :<span>{{question.questionOptionC}}</span></label>
+              <label for="">D :<span>{{question.questionOptionD}}</span></label>
+            </div>
+          </div>
+          <button type="button" class="answer_btn" (click)="createAnswer(question.id, false)">CREATE ANSWER</button>
+          <span class="question_type_unanswered">Type: {{question.type | titlecase}}</span>
         </div>
       </div>
     </div>
@@ -14,11 +28,28 @@
       <span class="list_title">ANSWERED</span>
       <div class="card" *ngFor="let question of answeredList">
         <div class="card_body">
-          <h4 class="card_title">Example text to build on the card title and make up the bulk of the card's content.</h4>
+          <div class="card_title">
+            <textarea name="answer" maxlength="500" rows="4" readonly>{{question.questionTitle}}</textarea>
+          </div>
+          <div class="card_options" *ngIf="question.type==='single' || question.type==='multiple'">
+            <div class="options">
+              <label for="">A :<span>{{question.questionOptionA}}</span></label>
+              <label for="">B :<span>{{question.questionOptionB}}</span></label>
+            </div>
+            <div class="options">
+              <label for="">C :<span>{{question.questionOptionC}}</span></label>
+              <label for="">D :<span>{{question.questionOptionD}}</span></label>
+            </div>
+          </div>
+          <div class="card_options" *ngIf="question.type==='open'">
+            <textarea name="answer" rows="4" [value]="question.questionText" readonly></textarea>
+          </div>
+          <span class="question_type_answered">Type: {{question.type | titlecase}}</span>
         </div>
       </div>
     </div>
   </div>
+
   <div *ngIf="!isQuestionExist" class="question_list">
     <h1>Oops, No questions exist yet !</h1>
   </div>

@@ -8,11 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-question.component.scss'],
 })
 export class EditQuestionComponent implements AfterViewInit {
+
   @ViewChildren('correctOption') correctOption!: QueryList<any>;
   questionsList: any = [];
   questionType!: string ;
   radioValues: any[] = [];
   questionId: string;
+  isEdit: boolean = false;
 
   singleQuestionFormGroup: FormGroup;
   multipleQuestionFormGroup: FormGroup;
@@ -32,13 +34,14 @@ export class EditQuestionComponent implements AfterViewInit {
   };
 
   constructor(private router: Router) {
+    this.isEdit = this.router.getCurrentNavigation()?.extras.state?.['edit'];
     this.questionId = this.router.getCurrentNavigation()?.extras.state?.['questionId'];
     const questions = localStorage.getItem('questions');
     if (questions) {
       JSON.parse(questions).forEach((element: any) => {
         if (element.id === this.questionId) {
           this.values = element;
-          this.questionType = element.type
+          this.questionType = element.type;
         }
       });
       this.questionsList = JSON.parse(questions).filter(
@@ -62,7 +65,7 @@ export class EditQuestionComponent implements AfterViewInit {
     });
     this.openQuestionFormGroup = new FormGroup({
       questionTitle: new FormControl(this.values.questionTitle, [Validators.required]),
-      questionText: new FormControl(this.values.questionText, [Validators.required]),
+      questionText: new FormControl(this.values.questionText),
     });
   }
 
@@ -78,18 +81,25 @@ export class EditQuestionComponent implements AfterViewInit {
   }
 
   submitForm() {
-    if (this.questionType === 'single')this.values = this.singleQuestionFormGroup.getRawValue();
-    if (this.questionType === 'multiple') this.values = this.multipleQuestionFormGroup.getRawValue();
-    if (this.questionType === 'open') this.values = this.openQuestionFormGroup.getRawValue();
-
-    this.radioValues.length > 0 ? this.values.answered = true: this.values.answered = false;
+    if (this.questionType === 'single'){
+      this.values = this.singleQuestionFormGroup.getRawValue();
+      this.radioValues.length > 0 ? this.values.answered = true: this.values.answered = false;
+    }
+    if (this.questionType === 'multiple') {
+      this.values = this.multipleQuestionFormGroup.getRawValue();
+      this.radioValues.length > 0 ? this.values.answered = true: this.values.answered = false;
+    }
+    if (this.questionType === 'open'){
+      this.values = this.openQuestionFormGroup.getRawValue();
+      this.values.questionText ? this.values.answered = true: this.values.answered = false;
+    }
     this.values.id = this.questionId;
     this.values.createAt = new Date(Date.now()).toString();
     this.values.type = this.questionType;
     this.values.correctAnswer = this.radioValues;
     this.questionsList.push(this.values);
     localStorage.setItem('questions', JSON.stringify(this.questionsList));
-    this.router.navigate(['management-question']);
+    this.isEdit ? this.router.navigate(['management-question']): this.router.navigate(['list-questions'])
   }
 
   checked(eventTarget: any) {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-questions',
@@ -12,7 +13,7 @@ export class ListQuestionsComponent implements OnInit {
   answeredList: any[]= [];
   unansweredList: any[]= [];
 
-  constructor() { }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.storedQuestionsList = localStorage.getItem('questions')
@@ -31,6 +32,10 @@ export class ListQuestionsComponent implements OnInit {
         }
       });
     } else this.isQuestionExist = false;
+  }
+
+  createAnswer (questionId: number, edit: boolean) {
+    this.router.navigate(['edit-question'], { state: { questionId, edit } });
   }
 
 }

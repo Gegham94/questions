@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./create-question.component.scss'],
 })
 export class CreateQuestionComponent implements AfterViewInit {
-  
+
   @ViewChildren('correctOption') correctOption!: QueryList<any>;
   questionsList: any = [];
   questionType: string = 'single';
@@ -21,6 +21,7 @@ export class CreateQuestionComponent implements AfterViewInit {
   values = {
     id: '',
     questionTitle: '',
+    questionText: '',
     questionOptionA: '',
     questionOptionB: '',
     questionOptionC: '',
@@ -48,7 +49,7 @@ export class CreateQuestionComponent implements AfterViewInit {
     });
     this.openQuestionFormGroup = new FormGroup({
       questionTitle: new FormControl('', [Validators.required]),
-      questionText: new FormControl('', [Validators.required]),
+      questionText: new FormControl(''),
     });
   }
 
@@ -69,12 +70,18 @@ export class CreateQuestionComponent implements AfterViewInit {
   }
 
   submitForm() {
-    if (this.questionType === 'single') this.values = this.singleQuestionFormGroup.getRawValue();
-    if (this.questionType === 'multiple') this.values = this.multipleQuestionFormGroup.getRawValue();
-    if (this.questionType === 'open') this.values = this.openQuestionFormGroup.getRawValue();
-
-    this.radioValues.length > 0 ? this.values.answered = true: this.values.answered = false;
-    console.log(this.values)
+    if (this.questionType === 'single'){
+      this.values = this.singleQuestionFormGroup.getRawValue();
+      this.radioValues.length > 0 ? this.values.answered = true: this.values.answered = false;
+    }
+    if (this.questionType === 'multiple') {
+      this.values = this.multipleQuestionFormGroup.getRawValue();
+      this.radioValues.length > 0 ? this.values.answered = true: this.values.answered = false;
+    }
+    if (this.questionType === 'open'){
+      this.values = this.openQuestionFormGroup.getRawValue();
+      this.values.questionText ? this.values.answered = true: this.values.answered = false;
+    }
     this.values.id = uuidv4();
     this.values.createAt = new Date(Date.now()).toString();
     this.values.type = this.questionType;

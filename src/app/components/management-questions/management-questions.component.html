@@ -5,9 +5,10 @@
   </div>
   <div *ngIf="isQuestionExist" class="question_list">
     <div class="question" *ngFor="let question of storedQuestionsList">
-      <span class="question_message">{{question.questionTitle}}</span>
+      <!-- <span class="question_message">{{question.questionTitle}}</span> -->
+      <textarea class="question_message" maxlength="500" name="answer" rows="3" readonly>{{question.questionTitle}}</textarea>
       <div class="answer_options_content" *ngIf="question.type === 'open'">
-        <textarea name="answer" rows="5" [value]="question.questionText" readonly></textarea>
+        <textarea name="answer" rows="4" [value]="question.questionText" readonly></textarea>
       </div>
       <div class="answer_options_content" *ngIf="question.type === 'single' || question.type === 'multiple'">
         <div class="first_col">
@@ -38,7 +39,7 @@
         </div>
         <div class="manage_question">
           <button class="delete_question" (click)="deleteQuestion(question.id)">DELETE</button>
-          <button class="edit_question" (click)="editQuestion(question.id)">EDIT</button>
+          <button class="edit_question" (click)="editQuestion(question.id, true)">EDIT</button>
         </div>
       </div>
     </div>

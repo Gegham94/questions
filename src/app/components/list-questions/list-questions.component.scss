@@ -1,3 +1,15 @@
+textarea::-webkit-scrollbar {
+  width: 2px;
+}
+textarea::-webkit-scrollbar-track {
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+textarea::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
 .unanswered::-webkit-scrollbar {
   width: 5px;
 }
@@ -48,6 +60,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    justify-content: center;
     .unanswered,
     .answered {
       margin-top: 60px;
@@ -56,8 +69,9 @@
       flex-direction: column;
       align-items: center;
       width: 100%;
-      max-height: calc(100vh - 150px);
+      max-height: calc(100vh - 115px);
       overflow-y: scroll;
+      overflow-x: hidden;
       .list_title {
         position: absolute;
         font-size: 24px;
@@ -66,25 +80,88 @@
       }
       .card {
         width: calc(100% - 100px);
-        min-height: 150px;
+        min-width: 400px;
+        min-height: 200px;
         box-shadow: 5px 0px 10px 3px #a7a7a7;
         padding: 10px;
         border-radius: 5px;
         margin-bottom: 10px;
         .card_body {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 90%;
+          .card_title {
+            word-break: break-all;
+            textarea {
+              border-color: #a7a7a7;
+              width: calc(100% - 10px);
+              resize: none;
+              text-decoration: none;
+              outline: none;
+              border-radius: 5px;
+              background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#d4dbb1a9)) fixed;
+            }
+          }
+          .card_options {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            textarea {
+              resize: none;
+              width: 400px;
+              margin-top: 20px;
+              border: 1px solid rgb(173, 173, 173);
+              text-decoration: none;
+              outline: none;
+              border-radius: 5px;
+              font-size: 14px;
+            }
+            .options {
+              display: flex;
+              flex-direction: column;
+              min-width: 200px;
+              label {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                margin-top: 20px;
+                font-style: italic;
+                font-weight: bold;
+                span {
+                  margin-left: 10px;
+                  font-weight: normal;
+                }
+              }
+            }
+          }
+          .question_type_answered, .question_type_unanswered {
+            position: absolute;
+            bottom: -15px;
+            color: #8b8b8b;
+            font-size: 12px;
+            right: 10px;
+          }
+          .question_type_unanswered{
+            bottom: -20px;
+          }
           .answer_btn {
+            position: absolute;
+            right: 10px;
+            bottom: 0;
             cursor: pointer;
             border: none;
             border-radius: 5px;
-            margin-right: 5px;
+            width: 120px;
             padding: 7px;
             color: white;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
+            background-color: #1c8a25;
             &:active {
               opacity: 0.7;
             }
-            background-color: #1c8a25;
             &:hover {
               background-color: #077911;
             }

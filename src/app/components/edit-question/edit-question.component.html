@@ -7,7 +7,7 @@
         <span class="title_type">{{values.type | titlecase}}</span>
         <div class="question_title">
           <span class="title">Question title ` </span>
-          <textarea rows="5" formControlName="questionTitle" required></textarea>
+          <textarea rows="5" maxlength="500" formControlName="questionTitle" required></textarea>
         </div>
         <div class="answer_options">
           <div class="options_content">
@@ -46,7 +46,7 @@
         <span class="title_type">{{values.type | titlecase}}</span>
         <div class="question_title">
           <span class="title">Question title ` </span>
-          <textarea rows="5" formControlName="questionTitle" required></textarea>
+          <textarea rows="5" maxlength="500" formControlName="questionTitle" required></textarea>
         </div>
         <div class="answer_options">
           <div class="options_content">
@@ -85,11 +85,11 @@
         <span class="title_type">{{values.type | titlecase}}</span>
         <div class="question_title">
           <span class="title">Question title ` </span>
-          <textarea rows="5" class="open" formControlName="questionTitle" required></textarea>
+          <textarea rows="5" maxlength="500" class="open" formControlName="questionTitle" required></textarea>
         </div>
         <div class="answer_text">
           <span class="title">Answer text ` </span>
-          <textarea rows="5" class="open" formControlName="questionText" required></textarea>
+          <textarea rows="5" class="open" formControlName="questionText"></textarea>
         </div>
         <div class="create_question" [ngClass]="{'disabled':!openQuestionFormGroup.valid}">
           <button [disabled]="!openQuestionFormGroup.valid">CREATE</button>

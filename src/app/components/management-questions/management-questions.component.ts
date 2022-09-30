@@ -42,7 +42,7 @@ export class ManagementQuestionsComponent implements OnInit {
     this.ngOnInit();
   }
 
-  editQuestion(questionId: number) {
-    this.router.navigate(['edit-question'], { state: { questionId } });
+  editQuestion(questionId: number, edit: boolean) {
+    this.router.navigate(['edit-question'], { state: { questionId, edit } });
   }
 }
